@@ -7,63 +7,39 @@ import static org.junit.Assert.assertEquals;
 
 public class CalculatorTest {
 
+    private static Calculator calculator;
 
-        private Calculator calculator;
+    @BeforeClass
+    public static void beforeClass() {
+        calculator = new Calculator();
+    }
 
-        @BeforeClass
-        public static void beforeClass() {
-            System.out.println("");
-            System.out.println("Before CalculatorTest.class");
-        }
+    @Test
+    public void testGetSum() {
+        assertEquals(3, calculator.calc(1, 2, '+'));
+    }
 
-        @AfterClass
-        public  static void afterClass() {
-            System.out.println("");
-            System.out.println("After CalculatorTest.class");
-        }
+    @Test
+    public void testGetDivide() {
+        assertEquals(2, calculator.calc(4, 2, '/'));
+    }
 
-        @Before
-        public void initTest() {
-            System.out.println("");
-            System.out.println("initTest()");
-            calculator = new Calculator();
-        }
+    @Test
+    public void testGetMultiple() {
+        assertEquals(2, calculator.calc(1, 2, '*'));
+    }
 
-        @After
-        public void afterTest() {
-            System.out.println("afterTest()");
-            calculator = null;
-        }
-
-        @Test
-        public void testGetSum() throws Exception {
-            System.out.println("testGetSum()");
-            assertEquals(15, calculator.getSum(7,8));
-        }
-
-        @Test
-        public void testGetDivide() throws Exception {
-            System.out.println("testGetDivide()");
-            assertEquals(20, calculator.getDivide(100,5));
-        }
-
-        @Test
-        public void testGetMultiple() throws Exception {
-            System.out.println("testGetMultiple()");
-        }
-
-        @Test(expected = ArithmeticException.class)
-        public void divisionWithException() {
-            System.out.println("divisionWithException()");
-            calculator.getDivide(15,0);
-        }
-
-
-
-        @Test(timeout = 500)
-        public void timeStampTest() {
-            System.out.println("timeStampTest()");
-            while (true);
-        }
+    @Test(expected = ArithmeticException.class)
+    public void divisionWithException() {
+        calculator.calc(2, 0, '/');
+    }
+    @Test(timeout = 500)
+    public void timeStampTest() {
+        System.out.println("timeStampTest()");
+        while (true);
     }
 }
+
+
+
+
